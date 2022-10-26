@@ -16,8 +16,5 @@ spec:
     containers:
     - name: container
       image: shtnfo/gunicorn:latest
-      envFrom:
-      - configMapRef:
-          name: gunicorn-cm-prod
       ports:
       - containerPort: 8000
