@@ -1,7 +1,6 @@
 FROM python:3.9
-WORKDIR /apps
-COPY requirements.txt /apps/
-RUN pip install -r requirements.txt
-COPY . /apps/
+RUN ./main.py /home/user/
+RUN ./wsgi.py /home/user/
+RUN apt update && apt-get install wget && pip install flask flask_cors && pip install gunicorn &&
 EXPOSE 8000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi.app"]
+CMD gunicorn, --bind, 0.0.0.0:8000, config.wsgi.app
