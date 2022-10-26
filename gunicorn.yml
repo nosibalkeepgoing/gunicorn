@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: gunicorn
+ namespace: default
+spec:
+ selector:
+   matchLabels:
+    type: gunicorn
+ replicas: 1
+ template:
+   metadata:
+     labels:
+       type: gunicorn
+   spec:
+    containers:
+    - name: container
+      image: shtnfo/gunicorn:latest
+      envFrom:
+      - configMapRef:
+          name: gunicorn-cm-prod
+      ports:
+      - containerPort: 8000
